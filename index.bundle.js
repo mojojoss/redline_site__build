@@ -11034,10 +11034,12 @@ function buildtable(json) {
     }
 }
 
-$.getJSON("http://www.json-generator.com/api/json/get/cerYupRRSG?indent=2").done(function (json) {
+$.getJSON("https://www.json-generator.com/api/json/get/cerYupRRSG?indent=2").done(function (json) {
     buildtable(json);
     table.onclick = function (e) {
+
         if (e.target.tagName == 'TH') {
+
             if (e.target.getAttribute('data-sort') == 'false') {
                 $('th').attr('data-sort', 'false');
                 e.target.setAttribute('data-sort', 'true');
@@ -11111,13 +11113,20 @@ $.getJSON("http://www.json-generator.com/api/json/get/cerYupRRSG?indent=2").done
                 buildtable(json);
             }
         };
-        if (e.target.tagName == 'td') {
-            console.log("e.target");
-        }
     };
 }).fail(function (jqxhr, textStatus, error) {
     var err = textStatus + ', ' + error;
     console.log("Request Failed: " + err);
+});
+$("tbody").click(function (event) {
+    //    console.log(event.target.closest("tr"));
+    //    for (var childItem in event.target.closest("tr").childNodes)
+    console.log(event.target.closest("tr").childNodes[0].innerHTML);
+    console.log(event.target.closest("tr").childNodes[1].innerHTML);
+    console.log(event.target.closest("tr").childNodes[2].innerHTML);
+    console.log(event.target.closest("tr").childNodes[3].innerHTML);
+    console.log(event.target.closest("tr").childNodes[4].innerHTML);
+    $('#tr-info').append('<span>выбран пользователь ' + event.target.closest("tr").childNodes[1].innerHTML + '</span><br><p>описание: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar tempor metus non placerat. Integer a dui molestie, pulvinar tortor quis, convallis lorem. Vestibulum nunc quam, convallis at mauris id, pharetra lacinia risus. Sed eu pharetra mi. Cras tincidunt orci enim, id consequat libero tincidunt nec. Proin iaculis metus in mauris tincidunt pretium.</p><span>id:<b>' + event.target.closest("tr").childNodes[0].innerHTML + '</b></span><br>' + '<span>имя:<b>' + event.target.closest("tr").childNodes[1].innerHTML + '</b></span><br>' + '<span>фамилия:<b>' + event.target.closest("tr").childNodes[2].innerHTML + '</b></span><br>' + '<span>email:<b>' + event.target.closest("tr").childNodes[3].innerHTML + '</b></span><br>' + '<span>телефон:<b>' + event.target.closest("tr").childNodes[4].innerHTML + '</b></span><br>');
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
